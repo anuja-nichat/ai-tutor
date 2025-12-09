@@ -1,0 +1,42 @@
+# Node
+node_modules
+npm-debug.log
+yarn-error.log
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pdb
+*.egg-info/
+.venv/
+.env
+.env.local
+.env.*.local
+
+# Environment files in all directories
+backend/.env
+backend/.env.local
+frontend/.env
+frontend/.env.local
+parser-service/.env
+parser-service/.env.local
+**/.env
+**/.env.local
+
+# Firebase service account key
+backend/serviceAccountKey.json
+**/serviceAccountKey.json
+
+# Editor
+.vscode/
+.idea/
+
+# Uploads / temp files
+uploads/
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db

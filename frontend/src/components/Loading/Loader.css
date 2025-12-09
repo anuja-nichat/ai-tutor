@@ -1,0 +1,167 @@
+body {
+    margin: 0;
+    overflow: hidden; /* Prevent scrollbars from appearing */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.loader-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000; /* Deep black background */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    perspective: 1200px; /* Increased perspective for more depth */
+    overflow: hidden;
+}
+
+/* Nucleus - centered and more prominent glow */
+.nucleus {
+    width: 50px; /* Slightly larger nucleus */
+    height: 50px;
+    background: radial-gradient(circle, #ffffff 30%, #39ff14 70%); /* Stronger white core with green halo */
+    border-radius: 50%;
+    position: absolute;
+    z-index: 10; /* Ensure nucleus is always on top */
+    box-shadow:
+        0 0 20px #39ff14, /* Stronger green glow */
+        0 0 40px #00ffff, /* Cyan secondary glow */
+        0 0 60px rgba(255, 255, 255, 0.4); /* Subtle white aura */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Orbit containers */
+.orbit {
+    position: absolute;
+    border: 2px solid;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transform-style: preserve-3d;
+    backface-visibility: hidden; /* Helps prevent flickering */
+}
+
+/* Specific orbits with distinct sizes, colors, and 3D orientations */
+.orbit1 {
+    width: 140px;
+    height: 140px;
+    border-color: rgba(57, 255, 20, 0.9);
+    /* KEY CHANGE: Reduced X-tilt (80deg) and added Y-tilt (10deg) for the requested slight slant */
+    transform: translate(-50%, -50%) rotateX(80deg) rotateY(10deg) rotateZ(0deg); 
+    animation: rotateOrbit1 5s linear infinite;
+}
+
+.orbit2 {
+/* ... (Orbits 2, 3, 4, 5, and 6 remain unchanged) ... */
+    width: 160px;
+    height: 160px;
+    border-color: rgba(0, 255, 255, 0.7);
+    transform: translate(-50%, -50%) rotateX(0deg) rotateY(45deg) rotateZ(30deg);
+    animation: rotateOrbit2 7s linear infinite;
+}
+.orbit3 {
+    width: 200px;
+    height: 200px;
+    border-color: rgba(57, 255, 20, 0.6);
+    transform: translate(-50%, -50%) rotateX(-40deg) rotateY(20deg) rotateZ(60deg);
+    animation: rotateOrbit3 8s linear infinite reverse;
+}
+
+.orbit4 {
+    width: 240px;
+    height: 240px;
+    border-color: rgba(0, 255, 255, 0.6);
+    transform: translate(-50%, -50%) rotateX(20deg) rotateY(-50deg) rotateZ(-20deg);
+    animation: rotateOrbit4 9s linear infinite;
+}
+
+.orbit5 {
+    width: 280px;
+    height: 280px;
+    border-color: rgba(57, 255, 20, 0.5);
+    transform: translate(-50%, -50%) rotateX(70deg) rotateY(-10deg) rotateZ(40deg);
+    animation: rotateOrbit5 10s linear infinite reverse;
+}
+
+.orbit6 {
+    width: 260px; 
+    height: 260px;
+    border-color: rgba(0, 255, 255, 0.5);
+    transform: translate(-50%, -50%) rotateX(45deg) rotateY(45deg) rotateZ(0deg);
+    animation: rotateOrbit6 11s linear infinite;
+}
+
+
+
+/* Electrons - more pronounced glow and slight depth */
+.electron {
+    width: 18px; /* Slightly larger electrons */
+    height: 18px;
+    background: radial-gradient(circle, #ffffff 20%, #39ff14 80%); /* White core with green glow */
+    border-radius: 50%;
+    position: absolute;
+    top: -9px; /* Half of electron height */
+    left: 50%;
+    margin-left: -9px; /* Half of electron width */
+    box-shadow:
+        0 0 12px #39ff14, /* Stronger green glow */
+        0 0 25px #00ffff; /* Cyan secondary glow */
+    transform: translateZ(8px); /* Further out in Z-axis for depth */
+}
+
+/* Keyframe rotations - unique for each orbit */
+@keyframes rotateOrbit1 {
+    /* Fixed X and Y rotation for the slant, only Z-rotation changes */
+    0% { transform: translate(-50%, -50%) rotateX(80deg) rotateY(10deg) rotateZ(0deg); }
+    100% { transform: translate(-50%, -50%) rotateX(80deg) rotateY(10deg) rotateZ(360deg); }
+}
+
+@keyframes rotateOrbit2 {
+    0% { transform: translate(-50%, -50%) rotateX(0deg) rotateY(45deg) rotateZ(30deg); }
+    100% { transform: translate(-50%, -50%) rotateX(0deg) rotateY(45deg) rotateZ(390deg); } /* 30 + 360 */
+}
+
+@keyframes rotateOrbit3 {
+    0% { transform: translate(-50%, -50%) rotateX(-40deg) rotateY(20deg) rotateZ(60deg); }
+    100% { transform: translate(-50%, -50%) rotateX(-40deg) rotateY(20deg) rotateZ(420deg); } /* 60 + 360 */
+}
+
+@keyframes rotateOrbit4 {
+    0% { transform: translate(-50%, -50%) rotateX(20deg) rotateY(-50deg) rotateZ(-20deg); }
+    100% { transform: translate(-50%, -50%) rotateX(20deg) rotateY(-50deg) rotateZ(340deg); } /* -20 + 360 */
+}
+
+@keyframes rotateOrbit5 {
+    0% { transform: translate(-50%, -50%) rotateX(70deg) rotateY(-10deg) rotateZ(40deg); }
+    100% { transform: translate(-50%, -50%) rotateX(70deg) rotateY(-10deg) rotateZ(400deg); } /* 40 + 360 */
+}
+
+/* NEW KEYFRAMES FOR ORBIT 6 */
+@keyframes rotateOrbit6 {
+    0% { transform: translate(-50%, -50%) rotateX(45deg) rotateY(45deg) rotateZ(0deg); }
+    100% { transform: translate(-50%, -50%) rotateX(45deg) rotateY(45deg) rotateZ(360deg); }
+}
+
+
+/* Loading text */
+.loading-text {
+    margin-top: 350px; /* Increased margin to ensure it clears all orbits */
+    color: #39ff14;
+    font-size: 1.5rem;
+    font-family: "Courier New", monospace;
+    text-shadow: 0 0 10px #39ff14, 0 0 20px #00ffff;
+    animation: blink 1.5s infinite;
+    z-index: 15;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.2; }
+}

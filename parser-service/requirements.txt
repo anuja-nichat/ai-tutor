@@ -1,0 +1,7 @@
+Flask==3.0.0
+PyMuPDF==1.23.8
+spacy==3.7.2
+sentence-transformers==2.2.2
+transformers==4.36.0
+openai==1.6.1
+torch==2.1.2

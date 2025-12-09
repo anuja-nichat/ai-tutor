@@ -1,0 +1,26 @@
+{
+  "class": "11",
+  "subjects": {
+    "Physics": [
+      "Motion",
+      "Laws of Motion",
+      "Gravitation",
+      "Work, Power & Energy"
+    ],
+    "Chemistry": [
+      "Mole Concept",
+      "Atomic Structure",
+      "Chemical Bonding"
+    ],
+    "Math": [
+      "Algebra",
+      "Trigonometry",
+      "Calculus"
+    ],
+    "Biology": [
+      "Cell Structure",
+      "Plant Physiology",
+      "Human Anatomy"
+    ]
+  }
+}

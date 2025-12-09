@@ -1,0 +1,177 @@
+/* Custom Green Hue Definition: 130 is a vibrant green */
+:root {
+	--hue: 130; 
+	--bg: hsl(var(--hue), 90%, 5%); 
+	--fg: hsl(var(--hue), 90%, 90%); 
+	--primary: hsl(var(--hue), 90%, 50%); 
+	--trans-dur: 0.3s;
+}
+
+/* Global setup */
+.loader-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    display: flex;
+    /* Flex-direction column stacks the animation and text vertically */
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+}
+
+.pl {
+	--dur: 3s;
+	position: relative;
+	width: 8em;
+	height: 8em;
+}
+
+/* ... (All other Nucleus, Ring, and Keyframe Styles remain exactly the same) ... */
+
+/* LOADING TEXT STYLES (Adjusted for position right below the animation) */
+.loading-text {
+    /* Set text color to pure white */
+    color: #ffffff; 
+    
+    margin-top: 2em; 
+    font-size: 1.5rem;
+    font-family: "Courier New", monospace;
+    
+    /* Keep the green glow effect using the primary green variable */
+    text-shadow: 0 0 10px var(--primary), 0 0 20px rgba(57, 255, 20, 0.7); 
+    
+    animation: blink 1.5s infinite;
+    z-index: 15;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.2; }
+}
+
+/* Nucleus Styles */
+.pl__nucleus,
+.pl__nucleus-particle {
+	position: absolute;
+}
+.pl__nucleus {
+	top: 50%;
+	left: 50%;
+	transform-style: preserve-3d;
+}
+.pl__nucleus-particle,
+.pl__ring,
+.pl__orbit,
+.pl__electron {
+	animation: particleTop var(--dur) linear infinite;
+}
+.pl__nucleus-particle {
+	background-color: var(--primary);
+	background-image: radial-gradient(37.5% 37.5% at 37.5% 37.5%, hsla(var(--hue), 10%, 90%, 0.25) 48%, hsla(var(--hue), 10%, 90%, 0) 50%);
+	border-radius: 50%;
+	box-shadow: -0.125em -0.125em 0 hsla(var(--hue), 10%, 10%, 0.25) inset;
+	top: calc(50% - 0.5em);
+	left: calc(50% - 0.5em);
+	width: 1em;
+	height: 1em;
+	transition: background-color var(--trans-dur);
+}
+.pl__nucleus-particle:nth-child(2n) {
+	background-color: hsl(var(--hue), 90%, 70%);
+}
+.pl__nucleus-particle:nth-child(n + 4):nth-child(-n + 9) {
+	animation-name: particleMiddle;
+}
+.pl__nucleus-particle:nth-child(n + 10):nth-child(-n + 12) {
+	animation-name: particleBottom;
+}
+/* Animation delays for stagger effect */
+.pl__nucleus-particle:nth-child(2) { animation-delay: calc(var(--dur) * -0.33); }
+.pl__nucleus-particle:nth-child(3) { animation-delay: calc(var(--dur) * -0.67); }
+.pl__nucleus-particle:nth-child(5) { animation-delay: calc(var(--dur) * -0.17); }
+.pl__nucleus-particle:nth-child(6) { animation-delay: calc(var(--dur) * -0.33); }
+.pl__nucleus-particle:nth-child(7) { animation-delay: calc(var(--dur) * -0.5); }
+.pl__nucleus-particle:nth-child(8) { animation-delay: calc(var(--dur) * -0.67); }
+.pl__nucleus-particle:nth-child(9) { animation-delay: calc(var(--dur) * -0.83); }
+.pl__nucleus-particle:nth-child(11) { animation-delay: calc(var(--dur) * -0.33); }
+.pl__nucleus-particle:nth-child(12) { animation-delay: calc(var(--dur) * -0.67); }
+.pl__nucleus-particle:last-child { animation: none; } /* Stays static */
+
+/* Ring Styles */
+.pl__rings {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+.pl__ring {
+	animation-name: ring;
+	transform-origin: 64px 64px;
+}
+.pl__ring:nth-child(n + 5):nth-child(-n + 7) {
+	animation-delay: calc(var(--dur) * -0.25);
+}
+.pl__orbit,
+.pl__electron {
+	animation-name: orbit;
+	transition: stroke var(--trans-dur);
+}
+/* General Orbit Styles */
+.pl__orbit:first-child { stroke: hsla(var(--hue),90%,50%,0); }
+.pl__orbit:nth-child(2) { stroke: hsla(var(--hue),90%,50%,0.5); }
+.pl__orbit:nth-child(3) { stroke: hsla(var(--hue),90%,50%,0.7); }
+
+/* Specific Ring Overrides and Delays */
+.pl__ring:first-child .pl__orbit:first-child { stroke: hsla(var(--hue),90%,50%,0.3); }
+.pl__ring:nth-child(2) .pl__orbit { animation-delay: calc(var(--dur) * -0.125); }
+.pl__ring:nth-child(3) .pl__orbit { animation-delay: calc(var(--dur) * -0.25); }
+.pl__ring:nth-child(4) .pl__orbit { animation-delay: calc(var(--dur) * -0.375); }
+.pl__ring:nth-child(5) .pl__orbit:first-child { stroke: hsla(var(--hue),90%,50%,0.3); }
+.pl__ring:nth-child(6) .pl__orbit { animation-delay: calc(var(--dur) * -0.25); }
+.pl__ring:nth-child(7) .pl__electron:nth-child(2) { animation-delay: calc(var(--dur) * -0.25); }
+.pl__ring:nth-child(8) .pl__electron:nth-child(2) { animation-delay: calc(var(--dur) * -0.125); }
+.pl__ring:nth-child(8) .pl__electron:nth-child(3) { animation-delay: calc(var(--dur) * -0.25); }
+.pl__ring:nth-child(8) .pl__electron:nth-child(4) { animation-delay: calc(var(--dur) * -0.375); }
+
+
+/* Keyframes */
+@keyframes orbit {
+	from { stroke-dashoffset: 0; }
+	to { stroke-dashoffset: 580; } /* Matches the original animation speed */
+}
+@keyframes ring {
+	from { transform: rotate(0); }
+	to { transform: rotate(1turn); }
+}
+/* Keyframes for the Nucleus Particles (3D movement) */
+@keyframes particleTop {
+	from { transform: rotateY(0) rotateZ(-35deg) translateY(-100%) rotateZ(35deg) rotateY(0); }
+	to { transform: rotateY(-1turn) rotateZ(-35deg) translateY(-100%) rotateZ(35deg) rotateY(1turn); }
+}
+@keyframes particleMiddle {
+	from { transform: rotateY(0) rotateZ(90deg) translateY(-100%) rotateZ(-90deg) rotateY(0); }
+	to { transform: rotateY(-1turn) rotateZ(90deg) translateY(-100%) rotateZ(-90deg) rotateY(1turn); }
+}
+@keyframes particleBottom {
+	from { transform: rotateY(0) rotateZ(-145deg) translateY(-100%) rotateZ(145deg) rotateY(0); }
+	to { transform: rotateY(-1turn) rotateZ(-145deg) translateY(-100%) rotateZ(145deg) rotateY(1turn); }
+}
+
+/* Loading Text (standard style) */
+/* .loading-text {
+    margin-top: 0px; 
+    color: var(--primary); 
+    font-size: 1.5rem;
+    font-family: "Courier New", monospace;
+    text-shadow: 0 0 10px var(--primary), 0 0 20px var(--fg);
+    animation: blink 1.5s infinite;
+    z-index: 15;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.2; }
+} */
