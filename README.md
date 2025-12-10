@@ -153,8 +153,6 @@ Parser service runs on **http://localhost:5001**
 
 ## 📖 API Documentation
 
-### Backend Endpoints
-
 #### Authentication
 - `POST /api/auth/register` - Register new user
 - `POST /api/auth/login` - User login
@@ -180,22 +178,6 @@ Parser service runs on **http://localhost:5001**
 #### File Upload
 - `POST /api/upload` - Upload syllabus PDF
 
-### Parser Service Endpoints
-
-- `POST /parse` - Parse PDF and extract topics
-  ```json
-  {
-    "file": "<binary_pdf_data>"
-  }
-  ```
-
-- `POST /generate_quiz` - Generate AI quiz
-  ```json
-  {
-    "topic": "Newton's Laws of Motion",
-    "subject": "Physics"
-  }
-  ```
 ---
 
 ## 🎯 Key Features Explained
